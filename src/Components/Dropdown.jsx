@@ -41,6 +41,21 @@ class Dropdown extends Component {
         }, () => this.changeHandler(this.state.searchValue))
     }
 
+    deleteSelection = (e) => {
+        let selectedCopy = [...this.state.selected]
+
+        for(let i = 0; i < selectedCopy.length; i++){
+            if(selectedCopy[i] === e) {
+                selectedCopy.splice(i,1)
+                break
+            }
+        }
+
+        this.setState({
+            selected: selectedCopy
+        }, () => this.changeHandler(this.state.searchValue))
+    }
+
     expandOptions = () => {
         this.setState({
             showOptions: true
@@ -56,7 +71,7 @@ class Dropdown extends Component {
             <div className="wrapper">
                 <div className="search-container" onClick={() => this.expandOptions()}>
                         {
-                        this.state.selected.map((elm, idx) => <a key ={idx} className="selected-country"> {elm} <span className="delete-icon"></span></a>)
+                        this.state.selected.map((elm, idx) => <a key ={idx} className="selected-country"> {elm} <span className="delete-icon" onClick={() => this.deleteSelection(elm)}></span></a>)
                         }
 
                     <input 
