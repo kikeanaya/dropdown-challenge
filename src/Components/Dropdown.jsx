@@ -9,7 +9,8 @@ class Dropdown extends Component {
             countries: [],
             searchResults: [],
             selected: [],
-            showOptions: false
+            showOptions: false,
+            searchValue: ''
         };
 
         this.service = new CountryService;
@@ -25,20 +26,19 @@ class Dropdown extends Component {
     }     
 
     changeHandler = (search) => {
-        console.log(search)
-        const searchResults = this.state.countries.filter(country => country.includes(search))
+        const searchResults = this.state.countries.filter(country => country.includes(search) && !this.state.selected.includes(country))
         this.setState({
-            searchResults: searchResults
+            searchResults: searchResults,
+            searchValue: search
         });
     }
 
-    clickHandler = (country) => {
-        const selectedCopy = [...this.state.selected]
-        console.log(country)
-        selectedCopy.push(country)
+    clickHandler = (elm) => {
+        let selectedCopy = [...this.state.selected]
+        selectedCopy.push(elm.country)
         this.setState({
             selected: selectedCopy
-        })
+        }, () => this.changeHandler(this.state.searchValue))
     }
 
     expandOptions = () => {
@@ -53,16 +53,16 @@ class Dropdown extends Component {
 
     render() {
         return (
+            <div className="wrapper">
                 <div className="search-container" onClick={() => this.expandOptions()}>
-                    {
-                        this.state.selected.map((elm, idx) => <a key ={idx} className="selected-countries"> {elm.country} <span className="delete-icon"></span></a>)
-                    }
+                        {
+                        this.state.selected.map((elm, idx) => <a key ={idx} className="selected-country"> {elm} <span className="delete-icon"></span></a>)
+                        }
+
                     <input 
-                    className="search-input"
                     type="search" 
                     placeholder="State"
                     onChange={e => this.changeHandler(e.target.value)}/>
-                
                     {this.state.showOptions === true && 
                         <ul className="countries-list"> 
                         {
@@ -71,6 +71,9 @@ class Dropdown extends Component {
                         </ul>
                     }
                 </div>
+                    
+                
+            </div>
         );
     }
 }
