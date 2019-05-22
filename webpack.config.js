@@ -1,6 +1,7 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   module: {
@@ -48,5 +49,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "style.css"
   })
-  ]
+  ],
+  optimization: {
+    minimizer: [
+      new OptimizeCssAssetsPlugin(), 
+      new TerserPlugin()
+      ]
+  }  
 };
