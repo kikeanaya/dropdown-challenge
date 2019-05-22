@@ -18,7 +18,7 @@ class Dropdown extends Component {
 
     getAllCountries = async () => {
         const res = await this.service.getAllCountries();
-
+        
         this.setState({
             countries: Object.values(res),
             searchResults: Object.values(res)
@@ -71,24 +71,45 @@ class Dropdown extends Component {
         })
     }
 
+    expandIconClick = (e) => {
+        e.stopPropagation();
+
+        if(this.state.showOptions){
+            this.setState({
+                showOptions: false
+            })
+        } else{
+            this.setState({
+                showOptions: true
+            })
+        }
+    }
+
     componentDidMount () {
         this.getAllCountries();
         document.addEventListener('mousedown', this.clickOutside, false);
+    }
+
+    componentWillUnmount () {
+        document.removeEventListener('mousedown', this.clickOutside, false);
     }
 
     render() {
         return (
             <div className="wrapper">
                 <div className="search-container" ref={node => this.node = node} onClick={() => this.expandOptions()}>
-                        {
-                        this.state.selected.map((elm, idx) => <a key ={idx} className="selected-country"> {elm} <span className="delete-icon" onClick={() => this.deleteSelection(elm)}></span></a>)
-                        }
+                    {
+                    this.state.selected.map((elm, idx) => <a key ={idx} className="selected-country"> {elm} <span className="delete-icon" onClick={() => this.deleteSelection(elm)}></span></a>)
+                    }
 
                     <input 
-                    type="search" 
-                    placeholder="State"
-                    onChange={e => this.changeHandler(e.target.value)}/>
-                    <span className="expand-icon"></span>
+                        type="search" 
+                        placeholder="State"
+                        onChange={e => this.changeHandler(e.target.value)}
+                    />
+
+                    <span className="expand-icon" onClick={(e) => this.expandIconClick(e)}/>
+
                     {this.state.showOptions === true && 
                         <ul className="countries-list"> 
                         {
@@ -97,8 +118,6 @@ class Dropdown extends Component {
                         </ul>
                     }
                 </div>
-                    
-                
             </div>
         );
     }

@@ -1,0 +1,97 @@
+.search-container{
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    padding: 10px;
+    padding-bottom: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+
+    &:hover{
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);
+    }
+
+    input{
+        -webkit-appearance: none;
+        border: 0;
+        font-size: 1rem;
+        outline: none;
+        max-width: 100%;
+        margin-bottom: 10px;
+        padding-left: 5px;
+    }
+}
+
+.selected-country{
+    background-color: #E8E8E8;
+    color: rgba(0,0,0,.6);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    height: 20px;
+    border-radius: 5px;
+    font-weight: 700;
+
+    &:hover{
+        color: rgba(0,0,0,.8);
+        background-color: rgb(232, 232, 232);
+    }
+}
+
+.countries-list{
+    max-height: 330px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 120%;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    list-style: none;
+
+    li{
+        padding: 10px 15px;
+        border-top: 1px solid #f0eeee;
+        font-size: 1rem;
+        color: rgba(0,0,0,.8);
+
+        &:hover{
+            background-color: #f0eeee;
+            color: black;
+            cursor: pointer;
+        }
+    }
+}
+
+.delete-icon{
+    background-image: url("./Images/delete.svg");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0px 5px;
+
+    &:hover{
+        filter: brightness(50%);
+    }
+}
+
+.expand-icon{
+    background-image: url("./Images/expand.svg");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 10px;
+    margin: 0px 5px;
+    position: absolute;
+    top: 15px;
+    right: 5px;
+}

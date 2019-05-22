@@ -1,22 +1,28 @@
 # Dropdown Challenge
 
-Explicación
+## Introducción
+
+Para esta Front-End Challenge he usado Webpack como Module Bundler, estableciendo los loaders para los diferentes tipos de archivo y habilitando los minificadores para reducir el tamaño de los archivos en la build de producción.
+
+He elegido React para realizar esta prueba debido a que es la herramienta que más controlo y quería asegurarme de que la aplicación tuviera todas las funcionalidades requeridas (¡y los extras!).
 
 ## Instrucciones
+
+### Para ver el proyecto desplegado en GitHub Pages:
+
+1. Hacer click en este [enlace](https://kikeanaya.github.io/dropdown-challenge/)
 
 ### Para ver el proyecto en local:
 
 1. Clonar el repositorio
-2. Instalar dependencias usando `npm install`
+2. Instalar las dependencias usando `npm install`
 3. Iniciar el servidor usando `npm start`
-4. Navegar a la aplicación en el [navegador](https://localhost:8080/)
+4. Navegar a la aplicación en el [navegador](http://localhost:8080/)
 
 ### Para crear un build de producción:
 
-1. Clonar el repositorio
-2. Instalar dependencias usando `npm install`
-3. Crear el build de producción usando `npm run build`
-4. Abrir el archivo `index.html` que se encuentra en la carpeta `./dist`
+1. Crear el build de producción usando `npm run build`
+2. Abrir el archivo `index.html` que se encuentra en la carpeta `./dist`
 
 ## Requisitos
 
@@ -26,7 +32,7 @@ Explicación
 ## Extras
 
 - [x] Selección múltiple.
-- [x] Selección múltiple.
+- [x] Cualquier otra interacción con la UI del Dropdown que creas relevante.
 
 ## Tecnologías
 
