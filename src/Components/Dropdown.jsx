@@ -26,7 +26,7 @@ class Dropdown extends Component {
     }     
 
     changeHandler = (search) => {
-        const searchResults = this.state.countries.filter(country => country.includes(search) && !this.state.selected.includes(country))
+        const searchResults = this.state.countries.filter(country => country.toLowerCase().includes(search.toLowerCase()) && !this.state.selected.includes(country))
         this.setState({
             searchResults: searchResults,
             searchValue: search
@@ -62,14 +62,24 @@ class Dropdown extends Component {
         })
     }
 
+    clickOutside = (e) => {
+        if(this.node.contains(e.target)){
+            return
+        }
+        this.setState({
+            showOptions: false
+        })
+    }
+
     componentDidMount () {
         this.getAllCountries();
+        document.addEventListener('mousedown', this.clickOutside, false);
     }
 
     render() {
         return (
             <div className="wrapper">
-                <div className="search-container" onClick={() => this.expandOptions()}>
+                <div className="search-container" ref={node => this.node = node} onClick={() => this.expandOptions()}>
                         {
                         this.state.selected.map((elm, idx) => <a key ={idx} className="selected-country"> {elm} <span className="delete-icon" onClick={() => this.deleteSelection(elm)}></span></a>)
                         }
@@ -78,6 +88,7 @@ class Dropdown extends Component {
                     type="search" 
                     placeholder="State"
                     onChange={e => this.changeHandler(e.target.value)}/>
+                    <span className="expand-icon"></span>
                     {this.state.showOptions === true && 
                         <ul className="countries-list"> 
                         {
