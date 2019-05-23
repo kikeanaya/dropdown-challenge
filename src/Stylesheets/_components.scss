@@ -53,6 +53,8 @@
     margin: 0px -10px;
     list-style: none;
 
+    
+
     li{
         padding: 10px 15px;
         border-top: 1px solid #f0eeee;
@@ -66,6 +68,17 @@
         }
     }
 }
+
+.not-found-message{
+    color: rgba(0, 0, 0, 0.6) !important;
+    cursor: default !important;
+
+    &:hover {
+        background-color: white !important;
+    }
+}
+
+
 
 .delete-icon{
     background-image: url("./Images/delete.svg");
@@ -99,3 +112,4 @@
 .flipped{
     transform: scale(1, -1);
 }
+

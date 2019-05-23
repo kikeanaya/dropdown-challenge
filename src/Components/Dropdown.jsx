@@ -115,8 +115,13 @@ class Dropdown extends Component {
                     <span className={!this.state.showOptions ? "expand-icon" : "expand-icon flipped"} onClick={(e) => this.expandIconClick(e)}/>
 
                     {this.state.showOptions === true && 
+
                         <ul className="countries-list"> 
-                            {
+                            {this.state.searchResults.length <= 0 &&
+                                <li className="not-found-message">No results found</li>
+                            } 
+                            
+                            {   
                                 this.state.searchResults.map((country, idx) => 
                                     <li key ={idx} onClick={() => this.clickHandler({country})}> 
                                         {country}
