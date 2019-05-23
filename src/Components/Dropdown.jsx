@@ -18,7 +18,7 @@ class Dropdown extends Component {
 
     getAllCountries = async () => {
         const res = await this.service.getAllCountries();
-        
+
         this.setState({
             countries: Object.values(res),
             searchResults: Object.values(res)
@@ -73,7 +73,6 @@ class Dropdown extends Component {
 
     expandIconClick = (e) => {
         e.stopPropagation();
-
         if(this.state.showOptions){
             this.setState({
                 showOptions: false
@@ -99,7 +98,12 @@ class Dropdown extends Component {
             <div className="wrapper">
                 <div className="search-container" ref={node => this.node = node} onClick={() => this.expandOptions()}>
                     {
-                    this.state.selected.map((elm, idx) => <a key ={idx} className="selected-country"> {elm} <span className="delete-icon" onClick={() => this.deleteSelection(elm)}></span></a>)
+                        this.state.selected.map((elm, idx) => 
+                            <a key ={idx} className="selected-country"> 
+                                {elm} 
+                                <span className="delete-icon" onClick={() => this.deleteSelection(elm)}/>
+                            </a>
+                        )
                     }
 
                     <input 
@@ -108,13 +112,17 @@ class Dropdown extends Component {
                         onChange={e => this.changeHandler(e.target.value)}
                     />
 
-                    <span className="expand-icon" onClick={(e) => this.expandIconClick(e)}/>
+                    <span className={!this.state.showOptions ? "expand-icon" : "expand-icon flipped"} onClick={(e) => this.expandIconClick(e)}/>
 
                     {this.state.showOptions === true && 
                         <ul className="countries-list"> 
-                        {
-                            this.state.searchResults.map((country, idx) => <li key ={idx} onClick={() => this.clickHandler({country})}> {country}</li>)
-                        }
+                            {
+                                this.state.searchResults.map((country, idx) => 
+                                    <li key ={idx} onClick={() => this.clickHandler({country})}> 
+                                        {country}
+                                    </li>
+                                )
+                            }
                         </ul>
                     }
                 </div>

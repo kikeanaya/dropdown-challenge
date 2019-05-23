@@ -19,9 +19,9 @@ He elegido React para realizar esta prueba debido a que es la herramienta que m�
 3. Iniciar el servidor usando `npm start`
 4. Navegar a la aplicaci처n en el [navegador](http://localhost:8080/)
 
-### Para crear un build de producci처n:
+### Generar build de producci처n:
 
-1. Crear el build de producci처n usando `npm run build`
+1. Generar el build de producci처n usando `npm run build`
 2. Abrir el archivo `index.html` que se encuentra en la carpeta `./dist`
 
 ## Requisitos
